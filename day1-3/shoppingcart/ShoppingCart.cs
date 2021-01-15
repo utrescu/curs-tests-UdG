@@ -53,8 +53,6 @@ namespace shoppingcart
             return total;
         }
 
-        public double GetTransportPrice => _transportPrice;
-
         public bool IsEmpty() => GetItemsCount() == 0;
 
         public void RemoveProduct(int count, IProduct product)
@@ -79,6 +77,11 @@ namespace shoppingcart
             {
                 products[product] = quantity;
             }
+        }
+
+        public double GetTransportPrice()
+        {
+            return _transportPrice;
         }
     }
 

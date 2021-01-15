@@ -7,5 +7,6 @@ namespace shoppingcart.Interfaces
         double GetTotal();
         int GetItemsCount();
         bool IsEmpty();
+        double GetTransportPrice();
     }
 }
