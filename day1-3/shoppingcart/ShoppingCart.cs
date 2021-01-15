@@ -1,14 +1,14 @@
 using System.Collections.Generic;
-using shoppingcart.Interfaces;
+using shopcart.Interfaces;
 
-namespace shoppingcart
+namespace shopcart
 {
-    public class ShopingCart : IShopingCart
+    public class ShoppingCart : IShoppingCart
     {
         private Dictionary<IProduct, int> products;
         private readonly double _transportPrice;
 
-        public ShopingCart(double transport)
+        public ShoppingCart(double transport)
         {
             products = new Dictionary<IProduct, int>();
             _transportPrice = transport;
@@ -79,10 +79,7 @@ namespace shoppingcart
             }
         }
 
-        public double GetTransportPrice()
-        {
-            return _transportPrice;
-        }
+        public double GetTransportPrice() => _transportPrice;
     }
 
 }

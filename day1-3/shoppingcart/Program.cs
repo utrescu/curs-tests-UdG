@@ -1,14 +1,14 @@
 ﻿using System;
-using shoppingcart.Interfaces;
+using shopcart.Interfaces;
 
-namespace shoppingcart
+namespace shopcart
 {
     class Program
     {
         static void Main(string[] args)
         {
             double transport = 2.0;
-            IShopingCart cart = new ShopingCart(transport);
+            IShoppingCart cart = new ShoppingCart(transport);
 
             cart.AddProduct(2, new Product("Coca", 12));
 

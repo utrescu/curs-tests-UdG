@@ -1,4 +1,4 @@
-namespace shoppingcart.Interfaces
+namespace shopcart.Interfaces
 {
     public interface IProduct
     {

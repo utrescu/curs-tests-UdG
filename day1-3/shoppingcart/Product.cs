@@ -1,6 +1,6 @@
-using shoppingcart.Interfaces;
+using shopcart.Interfaces;
 
-namespace shoppingcart
+namespace shopcart
 {
     internal class Product : IProduct
     {

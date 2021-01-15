@@ -1,6 +1,6 @@
-namespace shoppingcart.Interfaces
+namespace shopcart.Interfaces
 {
-    public interface IShopingCart
+    public interface IShoppingCart
     {
         void AddProduct(int count, IProduct product);
         void RemoveProduct(int count, IProduct product);
