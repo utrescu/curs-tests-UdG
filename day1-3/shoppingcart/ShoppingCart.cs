@@ -80,6 +80,11 @@ namespace shopcart
         }
 
         public double GetTransportPrice() => _transportPrice;
+
+        public void Empty()
+        {
+            products.Clear();
+        }
     }
 
 }
