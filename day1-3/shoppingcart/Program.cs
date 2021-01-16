@@ -14,8 +14,11 @@ namespace shopcart
             cart.AddProduct(1, new Product("Llet", 0.58, 0.75));
             cart.AddProduct(2, new Product("Bistec de vedella", 2.12, 0.5));
             cart.AddProduct(1, new Product("Carn picada", 0.63, 1));
+            cart.AddProduct(4, new Product("Filet de Bou", 8, 0.8));
 
             System.Console.WriteLine($"Total: {cart.GetTotal()} euros (transport: {cart.GetTransportPrice()} euros)");
+
+            System.Console.WriteLine(cart);
         }
     }
 }

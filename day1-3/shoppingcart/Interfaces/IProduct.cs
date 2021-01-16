@@ -4,6 +4,7 @@ namespace shopcart.Interfaces
     {
         public string Nom { get; }
         public double Preu { get; set; }
+        public double Pes { get; }
 
         public bool EsPesat();
     }

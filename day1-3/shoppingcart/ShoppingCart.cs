@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using shopcart.Interfaces;
 
@@ -44,13 +45,9 @@ namespace shopcart
                 return 0;
             }
 
-            var total = _transportPrice;
-            foreach (var (producte, count) in products)
-            {
-                total = total + producte.Preu * count;
-            }
+            var (_, total) = CalculaPesIPreu();
 
-            return total;
+            return total + CalculateTransport();
         }
 
         public bool IsEmpty() => GetItemsCount() == 0;
@@ -79,11 +76,45 @@ namespace shopcart
             }
         }
 
-        public double GetTransportPrice() => _transportPrice;
+        private (double , double) CalculaPesIPreu() {
+            var pes = 0.0;
+            var total = 0.0;
+           foreach (var product in products)
+           {
+               var descompte = 0.0;
+               var quantitat = product.Value;
+               
+               pes += quantitat * product.Key.Pes;
+               if (quantitat >= 4) {
+                   descompte = quantitat * (product.Key.Preu * 5 / 100);
+               }
+               total += quantitat * product.Key.Preu - descompte;
+           }
+           return (pes, Math.Round(total, 2));
+        }
+
+        private double CalculateTransport() 
+        {
+            var (pes, preu) = CalculaPesIPreu();
+
+            if (preu >= 50) {
+                return 0;
+            }
+
+            return pes > 5 ?  pes/5 + (_transportPrice-1) : _transportPrice;
+
+        }
+
+        public double GetTransportPrice() =>CalculateTransport();
 
         public void Empty()
         {
             products.Clear();
+        }
+
+        public override string ToString() {
+             var (pes, preu) = CalculaPesIPreu();
+             return $"{string.Format("{0:0.##}",preu)} + {GetTransportPrice()} euros, {pes} kg";
         }
     }
 
