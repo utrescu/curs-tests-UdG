@@ -1,0 +1,44 @@
+﻿@page "/"
+@attribute [Authorize]
+
+@using ElTemps.Data
+@inject PrevisioService PrevisioService
+@inject NavigationManager NavigationManager
+<h1>Pobles</h1>
+
+<p>Tria el poble del que vols veure la previsió.</p>
+
+@if (Pobles == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <select @bind="@Poble">
+    <option value="">Tria el poble ...</option>
+    @foreach (var poble in Pobles)
+        {
+            <option value="@poble">@poble</option>
+        }
+    </select>
+}
+
+@code {
+    private string[] Pobles;
+    private string poble;
+
+    string Poble
+    {
+        get => poble;
+        set
+        {
+            poble = value;
+            NavigationManager.NavigateTo("/previsio/" + poble, false);
+        }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Pobles = await PrevisioService.GetPobles();
+    }
+}
