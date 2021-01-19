@@ -7,9 +7,9 @@ namespace ElTemps.Data
 
     public class PrevisioService
     {
-        private static readonly string[] Pobles = new[]
+        private static readonly string[] Previsions = new[]
         {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+            "Neu", "Tempesta", "Pluja", "Núvol", "Assoleiat", "Sol"
         };
 
         public Task<Previsio[]> GetPrevisioSetmana(string poble)
