@@ -1,10 +1,10 @@
 <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
     <a class="block relative h-48 rounded overflow-hidden">
-        <img alt="@Dia" class="object-contain object-center w-full h-full block" src="@Imatge">
+        <img id="@Dia" alt="@Dia" class="object-contain object-center w-full h-full block" src="@Imatge">
     </a>
-    <div class="mt-4">
+    <div class="mt-4 text-center">
         <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">previsió</h3>
-        <h2 class="text-gray-900 title-font text-lg font-medium">@Dia</h2>
+        <h2 id="@(Dia)nom" class="text-gray-900 title-font text-lg font-medium">@Dia</h2>
     </div>
 </div>
 @code {
