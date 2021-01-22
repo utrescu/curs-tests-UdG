@@ -3,46 +3,36 @@
 @using ElTemps.Data
 @inject PrevisioService PrevisioService
 
-<h1>Previsió</h1>
-
-<p>Previsió del dia.</p>
-
 @if (previsions == null)
 {
     <p><em>Loading...</em></p>
 }
 else
 {
-    <table class="table">
-    <thead>
-        <tr>
-            <th>Date</th>
-            <th>Temp. (C)</th>
-            <th>Temp. (F)</th>
-            <th>Summary</th>
-        </tr>
-    </thead>
-    <tbody>
-        @{
-                int i = 0;
-            }
-            @foreach (var previsio in previsions)
-            {
-                <tr>
-                    <td>@Dies[i]</td>
-                    <td>@Poble</td>
-                    <td>@previsio.Imatge</td>
-                </tr>
+<section class="text-gray-600 body-font">
+  <div class="container px-5 py-24 mx-auto">
+      <h1 class="sm:text-3xl text-2xl font-medium title-font text-center text-gray-900 mb-20">Previsió metereològica per:
+      <br class="hidden sm:block">@Poble
+    </h1>
+    <div class="flex flex-wrap -m-4">
+@{
+     int i = 0;
+}
+     @foreach (var previsio in previsions)
+     {
+                <PrevisioDia Dia="@Dies[i]" Imatge="@previsio.Imatge"/>
                 i++;
-            }
-        </tbody>
-    </table>
+    }
+
+    </div>
+  </div>
+</section>
 }
 
 @code {
     [Parameter]
     public string Poble { get; set; }
-    private string[] Dies = new string[5] { "Dilluns", "Dimarts", "Dimecres", "Dijous", "Divendres" };
+    private string[] Dies = new string[7] { "Dilluns", "Dimarts", "Dimecres", "Dijous", "Divendres", "Dissabte", "Diumenge"};
     private Previsio[] previsions;
 
     protected override async Task OnInitializedAsync()

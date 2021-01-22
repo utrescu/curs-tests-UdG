@@ -15,12 +15,12 @@ namespace ElTemps.Data
         public Task<Previsio[]> GetPrevisioSetmana(string poble)
         {
             var rng = new Random();
-            return Task.FromResult(Enumerable.Range(1, 5).Select(index => new Previsio
+            return Task.FromResult(Enumerable.Range(1, 7).Select(index => new Previsio
             {
 
                 Dia = "1",
                 Poble = poble,
-                Imatge = ""
+                Imatge = "/img/cerilla.png"
 
             }).ToArray());
 
