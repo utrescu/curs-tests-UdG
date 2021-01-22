@@ -61,6 +61,17 @@ namespace ElTemps.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            [Required]
+            [Display(Name = "Nom")]
+            public string Nom { get; set; }
+
+            [Required]
+            [Display(Name = "Cognoms")]
+            public string Cognoms { get; set; }
+
+            [Display(Name = "Població")]
+            public string Poblacio { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -75,7 +86,13 @@ namespace ElTemps.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email };
+                var user = new ApplicationUser { 
+                    UserName = Input.Email, 
+                    Email = Input.Email,
+                    Nom = Input.Nom,
+                    Cognoms = Input.Cognoms,
+                    Poblacio = Input.Poblacio 
+                };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
