@@ -28,14 +28,17 @@ namespace ElTemps.Data
 
         public Task<string[]> GetPobles()
         {
-            return Task.FromResult(new[] {
+            return Task.FromResult(Pobles);
+        }
+
+        public static string[] Pobles = {
                 "Bonyeta",
                 "Vilamongat",
                 "Sant Ficus",
                 "Torreta",
                 "VilaFredat",
-                "Sant Sol de PuigPelat"});
-        }
+                "Sant Sol de PuigPelat"
+            };
     }
 
 }
