@@ -1,14 +1,9 @@
 @inherits LayoutComponentBase
 
-<div class="page">
+<NavBar />
 
-    <div class="main">
-        <div class="top-row px-4 auth">
-            <LoginDisplay />
-        </div>
-
-        <div class="content px-4">
-            @Body
-        </div>
-    </div>
-</div>
+<main class="mt-12 lg:mt-32">
+    <section class="container mx-auto px-6">
+        @Body
+    </section>
+</main>

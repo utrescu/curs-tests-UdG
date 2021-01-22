@@ -1,53 +1,47 @@
-﻿@page
+@page
 @model LoginModel
 
 @{
-    ViewData["Title"] = "Identificació";
+    ViewData["Title"] = "Identifiqueu-vos per accedir a la previsió";
 }
+<div class="bg-white dark:bg-gray-800 w-full max-w-sm rounded-lg shadow-md overflow-hidden mx-auto">
+    <div class="py-4 px-6">
+        <h2 class="text-center font-bold text-gray-700 dark:text-white text-3xl">Previsió del temps</h2>
 
-<h1>@ViewData["Title"]</h1>
-<div class="row">
-    <div class="col-md-4">
-        <section>
-            <form id="account" method="post">
-                <h4>Identifiqueu-vos per accedir al contigut secret.</h4>
-                <hr />
-                <div asp-validation-summary="All" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Input.Email">Correu electrònic</label>
-                    <input asp-for="Input.Email" class="form-control" />
-                    <span asp-validation-for="Input.Email" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Input.Password">Contrasenya</label>
-                    <input asp-for="Input.Password" class="form-control" />
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label asp-for="Input.RememberMe">
-                            <input asp-for="Input.RememberMe" />
-                            @Html.DisplayNameFor(m => m.Input.RememberMe)
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Entrar</button>
-                </div>
-                <div class="form-group">
-                    <p>
-                        <a id="forgot-password" asp-page="./ForgotPassword">Heu oblidat la contrasenya?</a>
-                    </p>
-                    <p>
-                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Registrar-se com a nou usuari</a>
-                    </p>                    
-                </div>
-            </form>
-        </section>
+        <h3 class="mt-1 text-center font-medium text-gray-600 dark:text-gray-200 text-xl">al Bonyetès</h3>
+
+        <p class="mt-1 text-center text-gray-500 dark:text-gray-400">@ViewData["Title"]</p>
+
+        <form id="account" method="post">
+            <div class="mt-4 w-full">
+                <input id="correu" asp-for="Input.Email"
+                    class="w-full mt-2 py-2 px-4 bg-white dark:bg-gray-800 text-gray-700 border border-gray-300 dark:border-gray-600 rounded block placeholder-gray-500 dark:placeholder-gray-400 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+                    type="email" placeholder="Correu electrònic" aria-label="Email Address">
+            </div>
+
+            <div class="mt-4 w-full">
+                <input id="contrasenya" asp-for="Input.Password"
+                    class="w-full mt-2 py-2 px-4 bg-white dark:bg-gray-800 text-gray-700 border border-gray-300 dark:border-gray-600 rounded block placeholder-gray-500 dark:placeholder-gray-400 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+                    type="password" placeholder="Password" aria-label="Password">
+            </div>
+
+            <div class="flex justify-between items-center mt-4">
+                <a href="#" class="text-gray-600 dark:text-gray-200 text-sm hover:text-gray-500">Heu oblidat la
+                    contrasenya?</a>
+
+                <button id="entrar"
+                    class="py-2 px-4 bg-gray-700 text-white rounded hover:bg-gray-600 focus:outline-none" type="submit">
+                    Login
+                </button>
+            </div>
+            <div asp-validation-summary="All"
+                class="text-red-600 dark:text-red-400 font-bold mx-2 text-sm hover:text-red-500"></div>
+        </form>
     </div>
-    
-</div>
 
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
+    <div class="flex items-center justify-center py-4 bg-gray-100 dark:bg-gray-700 text-center">
+        <span class="text-gray-600 dark:text-gray-200 text-sm">No teniu compte? </span>
+        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl"
+            class="text-blue-600 dark:text-blue-400 font-bold mx-2 text-sm hover:text-blue-500">Registreu-vos</a>
+    </div>
+</div>

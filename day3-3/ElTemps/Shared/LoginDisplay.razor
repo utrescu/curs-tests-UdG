@@ -1,12 +1,25 @@
 <AuthorizeView>
     <Authorized>
-        <a href="Identity/Account/Manage">Hello, @context.User.Identity.Name!</a>
-        <form method="post" action="Identity/Account/LogOut">
-            <button type="submit" class="nav-link btn btn-link">Log out</button>
+        <form class="w-full max-w-sm" method="post" action="Identity/Account/LogOut">
+            <div class="flex items-center  py-2">
+                <p id="salutation"
+                    class="appearance-none bg-transparent border-none w-full text-gray-100 dark:text-gray-800 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                    type="text" aria-label="Hello!">
+                    Hola, @context.User.Identity.Name!
+                </p>
+                <button id="logout" type="submit"
+                    class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-white dark:border-black hover:border-gray-500 text-sm border-2 text-white py-1 px-2 rounded">
+                    Sortir
+                </button>
+            </div>
         </form>
     </Authorized>
     <NotAuthorized>
-        <a href="Identity/Account/Register">Register</a>
-        <a href="Identity/Account/Login">Log in</a>
+        <a id="register"
+            class="my-1 text-sm text-gray-100 dark:text-gray-800 font-medium hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0"
+            href="Identity/Account/Register">Register</a>
+        <a id="login"
+            class="my-1 text-sm text-gray-100 dark:text-gray-800 font-medium hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0"
+            href="Identity/Account/Login">Log in</a>
     </NotAuthorized>
 </AuthorizeView>
