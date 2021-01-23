@@ -79,7 +79,7 @@ namespace ElTemps.Areas.Identity.Pages.Account
                 var pobles = PrevisioService.Pobles;
                 if (!pobles.Contains(Poblacio))
                 {
-                    yield return new ValidationResult($"El poble {Poblacio} no és de la comarca del Bonyetès",
+                    yield return new ValidationResult($"El poble '{Poblacio}' no és de la comarca del Bonyetès",
                     new[] { nameof(Poblacio) });
                 }
 
