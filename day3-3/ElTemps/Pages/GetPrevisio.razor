@@ -20,7 +20,7 @@ else
 }
      @foreach (var previsio in previsions)
      {
-                <PrevisioDia Dia="@Dies[i]" Imatge="@previsio.Imatge"/>
+                <PrevisioDia DiaPrevisio="@previsio"/>
                 i++;
     }
 
@@ -32,7 +32,6 @@ else
 @code {
     [Parameter]
     public string Poble { get; set; }
-    private string[] Dies = new string[7] { "Dilluns", "Dimarts", "Dimecres", "Dijous", "Divendres", "Dissabte", "Diumenge"};
     private Previsio[] previsions;
 
     protected override async Task OnInitializedAsync()
