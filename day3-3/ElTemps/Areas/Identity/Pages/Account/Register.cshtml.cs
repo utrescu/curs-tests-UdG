@@ -44,7 +44,7 @@ namespace ElTemps.Areas.Identity.Pages.Account
 
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
-        public class InputModel
+        public class InputModel : IValidatableObject
         {
             [Required]
             [EmailAddress]
@@ -72,6 +72,20 @@ namespace ElTemps.Areas.Identity.Pages.Account
 
             [Display(Name = "Població")]
             public string Poblacio { get; set; }
+
+            public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+            {
+
+                var pobles = PrevisioService.Pobles;
+                if (!pobles.Contains(Poblacio))
+                {
+                    yield return new ValidationResult($"El poble '{Poblacio}' no és de la comarca del Bonyetès",
+                    new[] { nameof(Poblacio) });
+                }
+
+            }
+
+
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -86,12 +100,13 @@ namespace ElTemps.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { 
-                    UserName = Input.Email, 
+                var user = new ApplicationUser
+                {
+                    UserName = Input.Email,
                     Email = Input.Email,
                     Nom = Input.Nom,
                     Cognoms = Input.Cognoms,
-                    Poblacio = Input.Poblacio 
+                    Poblacio = Input.Poblacio
                 };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
