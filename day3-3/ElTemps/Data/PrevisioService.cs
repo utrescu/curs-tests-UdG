@@ -14,7 +14,7 @@ namespace ElTemps.Data
             "Dilluns", "Dimarts", "Dimecres", "Dijous", "Divendres", "Dissabte", "Diumenge"
         };    
 
-        private static string[] Pobles = new[] {
+        public static string[] Pobles = new[] {
                 "Bonyeta",
                 "Vilamongat",
                 "Sant Ficus",

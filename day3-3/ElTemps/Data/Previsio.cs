@@ -36,7 +36,7 @@ namespace ElTemps.Data
                     TextPrevisio = B.SkipWhile(item => item != anterior.TextPrevisio)
                      .Skip(1)
                      .FirstOrDefault();
-                    if (TextPrevisio == null) {
+                    if (string.IsNullOrWhiteSpace(TextPrevisio)) {
                         TextPrevisio = Previsions[0];
                     }
                 }
