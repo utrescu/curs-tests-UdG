@@ -1,11 +1,13 @@
 @using Data
 <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
     <a class="block relative h-32 rounded overflow-hidden">
-        <img id="@DiaPrevisio.TextPrevisio" alt="@DiaPrevisio.TextPrevisio" class="object-contain object-center w-full h-full block" src="@DiaPrevisio.Imatge">
+        <img id="@(DiaPrevisio.Dia)_imatge" alt="@DiaPrevisio.TextPrevisio"
+            class="object-contain object-center w-full h-full block" src="@DiaPrevisio.Imatge">
     </a>
     <div class="mt-4 text-center">
-        <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">@DiaPrevisio.TextPrevisio</h3>
-        <h2 id="@(DiaPrevisio)nom" class="text-gray-900 title-font text-lg font-medium">@DiaPrevisio.Dia</h2>
+        <h3 id="@(DiaPrevisio.Dia)_previsio" class="text-gray-500 text-xs tracking-widest title-font mb-1">
+            @DiaPrevisio.TextPrevisio</h3>
+        <h2 id="@(DiaPrevisio.Dia)" class="text-gray-900 title-font text-lg font-medium">@DiaPrevisio.Dia</h2>
     </div>
 </div>
 @code {

@@ -10,9 +10,9 @@ namespace ElTemps.Data
     {
         private readonly Dictionary<string, Previsio[]> Previsions;
 
-        private static string[] Dies = { 
+        private static string[] Dies = {
             "Dilluns", "Dimarts", "Dimecres", "Dijous", "Divendres", "Dissabte", "Diumenge"
-        };    
+        };
 
         public static string[] Pobles = new[] {
                 "Bonyeta",
@@ -27,15 +27,19 @@ namespace ElTemps.Data
         {
             Previsions = new Dictionary<string, Previsio[]>();
 
-            foreach(var poble in Pobles) {
+            foreach (var poble in Pobles)
+            {
                 Previsions[poble] = GeneraPrevisio(poble);
             }
         }
 
-        private string IncrementaDia(string dia) {
-            for(int i=0; i<Dies.Length; i++) {
-                if (dia == Dies[i]) {
-                    return Dies[(i+1) % Dies.Length];
+        private string IncrementaDia(string dia)
+        {
+            for (int i = 0; i < Dies.Length; i++)
+            {
+                if (dia == Dies[i])
+                {
+                    return Dies[(i + 1) % Dies.Length];
                 }
             }
             return "ERROR";
@@ -44,12 +48,14 @@ namespace ElTemps.Data
         private Previsio[] GeneraPrevisio(string poble)
         {
             var previsions = new Previsio[Dies.Length];
-            previsions[0] = new Previsio(poble) {
+            previsions[0] = new Previsio(poble)
+            {
                 Dia = Dies[0]
             };
 
-            for(var i=1; i < Dies.Length; i++) {
-                previsions[i] = new Previsio(previsions[i-1])
+            for (var i = 1; i < Dies.Length; i++)
+            {
+                previsions[i] = new Previsio(previsions[i - 1])
                 {
                     Dia = Dies[i]
                 };
