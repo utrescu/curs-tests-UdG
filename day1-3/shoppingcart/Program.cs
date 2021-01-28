@@ -16,7 +16,7 @@ namespace shopcart
             cart.AddProduct(1, new Product("Carn picada", 0.63, 1));
             cart.AddProduct(4, new Product("Filet de Bou", 8, 0.8));
 
-            System.Console.WriteLine($"Total: {cart.GetTotal()} euros (transport: {cart.GetTransportPrice()} euros)");
+            System.Console.WriteLine($"Total: {cart.GetTotal()} euros (transport: {cart.TransportPrice} euros)");
 
             System.Console.WriteLine(cart);
         }
