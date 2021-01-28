@@ -101,5 +101,34 @@ namespace ElTempsTest
             Assert.NotEmpty(errorMessage);
         }
 
+        [Theory]
+        [InlineData("utrescu@gmail.com", "Ies2010!")]
+        public void TestQueEsPotFerLoginAmbUsuariCorrecteIQueSurtEnLaNavBarIHiHaBotoDeLogout(string usuari, string contrasenya)
+        {
+            // GIVEN un usuari que vol fer login                     
+            driver.Url = "https://localhost:5001/Identity/Account/Login";
+
+            // WHEN intenta entrar
+            driver.FindElement(By.Id("correu")).SendKeys(usuari);
+            driver.FindElement(By.Id("contrasenya")).SendKeys(contrasenya);
+            driver.FindElement(By.Id("entrar")).Click();
+
+            // THEN hem entrat
+            var url = driver.Url;
+            Assert.Equal("https://localhost:5001/", url);
+
+            var salutacio = driver.FindElementById("salutation");
+            Assert.Equal($"Hola, {usuari}!", salutacio.Text);
+
+            var logout = driver.FindElementById("logout");
+            Assert.True(logout.Enabled);
+            Assert.Equal("Sortir", logout.Text);
+
+            Thread.Sleep(2000);
+
+            
+            
+        }
+
     }
 }
