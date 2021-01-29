@@ -29,13 +29,4 @@ else
 </section>
 }
 
-@code {
-    [Parameter]
-    public string Poble { get; set; }
-    private Previsio[] previsions;
 
-    protected override async Task OnInitializedAsync()
-    {
-        previsions = await PrevisioService.GetPrevisioSetmana(Poble);
-    }
-}
