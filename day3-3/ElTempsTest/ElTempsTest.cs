@@ -6,9 +6,9 @@ using System.Linq;
 using System.Threading;
 using Xunit;
 
-namespace ElTempsTest
+namespace ElTempsTestNamespace
 {
-    public class UnitTest1 : IDisposable
+    public class ElTempsTest : IDisposable
     {
         ChromeDriver driver;
 
@@ -29,9 +29,9 @@ namespace ElTempsTest
         [Fact]
         public void TestQueSiAccedimAlSistemaSenseIdentificarEnsRetornaUnError()
         {
-            // GIVEN un accés sense usuari
+            // GIVEN un accï¿½s sense usuari
 
-            // WHEN Anem a la pàgina principal
+            // WHEN Anem a la pï¿½gina principal
             driver.Navigate().GoToUrl("https://localhost:5001");
 
             Thread.Sleep(500);
@@ -96,7 +96,7 @@ namespace ElTempsTest
             driver.FindElement(By.Id("contrasenya")).SendKeys(contrasenya);
             driver.FindElement(By.Id("entrar")).Click();
 
-            // THEN el correu està malament                        
+            // THEN el correu estï¿½ malament                        
             var errorMessage = driver.FindElement(By.Id("correu")).GetAttribute("validationMessage");
             Assert.NotEmpty(errorMessage);
         }
