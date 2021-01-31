@@ -7,14 +7,19 @@ namespace shopcart
     public class ShoppingCart : IShoppingCart
     {
         private Dictionary<IProduct, int> products;
-        private readonly double _transportPrice;
+        private readonly double _baseTransportPrice;
 
         private IUsuari _usuari;
 
+        /// <summary>
+        /// Crea una cistella de la compra a partir del preu base de transport
+        /// </summary>
+        /// <param name="transportPrice">Preu base del transport</param>
+        /// <param name="usuari">usuari</param>
         public ShoppingCart(double transport, IUsuari usuari = null)
         {
             products = new Dictionary<IProduct, int>();
-            _transportPrice = transport;
+            _baseTransportPrice = transport;
             if (usuari != null) {
                 _usuari = usuari;
             }
@@ -50,9 +55,8 @@ namespace shopcart
                 return 0;
             }
 
-            var (_, total) = CalculaPesIPreu();
-
-            return total + CalculateTransport();
+            var (pes, total) = CalculaPesIPreu();
+            return total + CalculateTransport(pes, total);
         }
 
         public bool IsEmpty() => GetItemsCount() == 0;
@@ -98,19 +102,24 @@ namespace shopcart
            return (pes, Math.Round(total, 2));
         }
 
-        private double CalculateTransport() 
+        private double CalculateTransport(double pes, double preu) 
         {
-            var (pes, preu) = CalculaPesIPreu();
-
-            if (preu >= 50 || _usuari.EsVIP()) {
+            if (preu >= 50
+                || _usuari != null && _usuari.EsVIP()) {
                 return 0;
             }
 
-            return pes > 5 ?  pes/5 + (_transportPrice-1) : _transportPrice;
-
+            return pes > 5 ?  pes/5 + (_baseTransportPrice-1) : _baseTransportPrice;
         }
 
-        public double GetTransportPrice() => CalculateTransport();
+        public double TransportPrice
+        {
+            get
+            {
+                var (pes, preu) = CalculaPesIPreu();
+                return CalculateTransport(pes, preu);
+            }
+        }
 
         public void Clear()
         {
@@ -118,8 +127,8 @@ namespace shopcart
         }
 
         public override string ToString() {
-             var (pes, preu) = CalculaPesIPreu();
-             return $"{string.Format("{0:0.##}",preu)} + {GetTransportPrice()} euros, {pes} kg";
+            var (pes, preu) = CalculaPesIPreu();
+            return $"{string.Format("{0:0.##}",preu)} + {TransportPrice} euros, {pes} kg";
         }
 
         public string GetUsuari() => _usuari == null ? "anònim" : _usuari.Nom;

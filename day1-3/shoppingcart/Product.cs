@@ -1,8 +1,9 @@
+using System;
 using shopcart.Interfaces;
 
 namespace shopcart
 {
-    internal class Product : IProduct
+    public class Product : IProduct
     {
         public Product(string nom, double preu, double pes)
         {
@@ -17,6 +18,10 @@ namespace shopcart
         public double Pes { get; }
         public bool EsPesat()
         {
+            if (Pes < 0)
+            {
+                throw new Exception("Els pesos negatius no existeixen");
+            }
             return Pes > 20.0;
         }
     }
