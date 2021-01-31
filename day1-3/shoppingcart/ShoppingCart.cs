@@ -9,10 +9,15 @@ namespace shopcart
         private Dictionary<IProduct, int> products;
         private readonly double _transportPrice;
 
-        public ShoppingCart(double transport)
+        private IUsuari _usuari;
+
+        public ShoppingCart(double transport, IUsuari usuari = null)
         {
             products = new Dictionary<IProduct, int>();
             _transportPrice = transport;
+            if (usuari != null) {
+                _usuari = usuari;
+            }
         }
 
         public void AddProduct(int count, IProduct product)
@@ -97,7 +102,7 @@ namespace shopcart
         {
             var (pes, preu) = CalculaPesIPreu();
 
-            if (preu >= 50) {
+            if (preu >= 50 || _usuari.EsVIP()) {
                 return 0;
             }
 
@@ -105,9 +110,9 @@ namespace shopcart
 
         }
 
-        public double GetTransportPrice() =>CalculateTransport();
+        public double GetTransportPrice() => CalculateTransport();
 
-        public void Empty()
+        public void Clear()
         {
             products.Clear();
         }
@@ -115,6 +120,17 @@ namespace shopcart
         public override string ToString() {
              var (pes, preu) = CalculaPesIPreu();
              return $"{string.Format("{0:0.##}",preu)} + {GetTransportPrice()} euros, {pes} kg";
+        }
+
+        public string GetUsuari() => _usuari == null ? "anònim" : _usuari.Nom;
+
+        public void AddUsuari(IUsuari usuari)
+        {
+            if (usuari == null) {
+                _usuari = usuari;
+            } else {
+                throw new Exception("Aquesta cistella ja pertany a un usuari");
+            }
         }
     }
 
