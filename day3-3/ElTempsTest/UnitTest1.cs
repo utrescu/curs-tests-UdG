@@ -17,6 +17,7 @@ namespace ElTempsTest
             ChromeOptions options = new ChromeOptions();
             options.AddArguments("--lang=ca");
             driver = new ChromeDriver(".", options);
+
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             wait.PollingInterval = TimeSpan.FromMilliseconds(100);
         }
@@ -29,15 +30,15 @@ namespace ElTempsTest
         [Fact]
         public void TestQueSiAccedimAlSistemaSenseIdentificarEnsRetornaUnError()
         {
-            // GIVEN un accés sense usuari
+            // GIVEN un accï¿½s sense usuari
 
-            // WHEN Anem a la pàgina principal
+            // WHEN Anem a la pï¿½gina principal
             driver.Navigate().GoToUrl("https://localhost:5001");
 
             Thread.Sleep(500);
             // THEN
             var error = driver.FindElementById("errortype").Text;
-            var missatge = driver.FindElement(By.Id("errormessage")).Text;
+            var missatge = driver.FindElement(By. Id("errormessage")).Text;
 
 
             Assert.Equal("Error", error);
@@ -96,7 +97,7 @@ namespace ElTempsTest
             driver.FindElement(By.Id("contrasenya")).SendKeys(contrasenya);
             driver.FindElement(By.Id("entrar")).Click();
 
-            // THEN el correu està malament                        
+            // THEN el correu estï¿½ malament                        
             var errorMessage = driver.FindElement(By.Id("correu")).GetAttribute("validationMessage");
             Assert.NotEmpty(errorMessage);
         }
