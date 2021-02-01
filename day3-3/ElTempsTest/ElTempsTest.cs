@@ -6,9 +6,9 @@ using System.Linq;
 using System.Threading;
 using Xunit;
 
-namespace ElTempsTest
+namespace ElTempsTestNamespace
 {
-    public class UnitTest1 : IDisposable
+    public class ElTempsTest : IDisposable
     {
         ChromeDriver driver;
 

@@ -6,17 +6,23 @@ namespace shopcart
 {
     public class ShoppingCart : IShoppingCart
     {
-        private readonly Dictionary<IProduct, int> products;
+        private Dictionary<IProduct, int> products;
         private readonly double _baseTransportPrice;
+
+        private IUsuari _usuari;
 
         /// <summary>
         /// Crea una cistella de la compra a partir del preu base de transport
         /// </summary>
         /// <param name="transportPrice">Preu base del transport</param>
-        public ShoppingCart(double transportPrice)
+        /// <param name="usuari">usuari</param>
+        public ShoppingCart(double transport, IUsuari usuari = null)
         {
             products = new Dictionary<IProduct, int>();
-            _baseTransportPrice = transportPrice;
+            _baseTransportPrice = transport;
+            if (usuari != null) {
+                _usuari = usuari;
+            }
         }
 
         public void AddProduct(int count, IProduct product)
@@ -50,7 +56,6 @@ namespace shopcart
             }
 
             var (pes, total) = CalculaPesIPreu();
-
             return total + CalculateTransport(pes, total);
         }
 
@@ -99,12 +104,12 @@ namespace shopcart
 
         private double CalculateTransport(double pes, double preu) 
         {
-            if (preu >= 50) {
+            if (preu >= 50
+                || _usuari != null && _usuari.EsVIP()) {
                 return 0;
             }
 
             return pes > 5 ?  pes/5 + (_baseTransportPrice-1) : _baseTransportPrice;
-
         }
 
         public double TransportPrice
@@ -116,14 +121,25 @@ namespace shopcart
             }
         }
 
-        public void Empty()
+        public void Clear()
         {
             products.Clear();
         }
 
         public override string ToString() {
-             var (pes, preu) = CalculaPesIPreu();
-             return $"{string.Format("{0:0.##}",preu)} + {TransportPrice} euros, {pes} kg";
+            var (pes, preu) = CalculaPesIPreu();
+            return $"{string.Format("{0:0.##}",preu)} + {TransportPrice} euros, {pes} kg";
+        }
+
+        public string GetUsuari() => _usuari == null ? "anònim" : _usuari.Nom;
+
+        public void AddUsuari(IUsuari usuari)
+        {
+            if (usuari == null) {
+                _usuari = usuari;
+            } else {
+                throw new Exception("Aquesta cistella ja pertany a un usuari");
+            }
         }
     }
 

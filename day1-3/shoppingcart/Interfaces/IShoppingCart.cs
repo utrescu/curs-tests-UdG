@@ -7,7 +7,9 @@ namespace shopcart.Interfaces
         double GetTotal();
         int GetItemsCount();
         bool IsEmpty();
-        void Empty();
+        void Clear();
         double TransportPrice { get; }
+        string GetUsuari();
+        void AddUsuari(IUsuari usuari);
     }
 }
