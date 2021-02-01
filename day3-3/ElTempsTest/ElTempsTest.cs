@@ -30,9 +30,9 @@ namespace ElTempsTestNamespace
         [Fact]
         public void TestQueSiAccedimAlSistemaSenseIdentificarEnsRetornaUnError()
         {
-            // GIVEN un acc�s sense usuari
+            // GIVEN un accés sense usuari
 
-            // WHEN Anem a la p�gina principal
+            // WHEN Anem a la pàgina principal
             driver.Navigate().GoToUrl("https://localhost:5001");
 
             Thread.Sleep(500);
@@ -97,7 +97,7 @@ namespace ElTempsTestNamespace
             driver.FindElement(By.Id("contrasenya")).SendKeys(contrasenya);
             driver.FindElement(By.Id("entrar")).Click();
 
-            // THEN el correu est� malament                        
+            // THEN el correu està malament                        
             var errorMessage = driver.FindElement(By.Id("correu")).GetAttribute("validationMessage");
             Assert.NotEmpty(errorMessage);
         }
@@ -126,8 +126,6 @@ namespace ElTempsTestNamespace
             Assert.Equal("Sortir", logout.Text);
 
             Thread.Sleep(2000);
-
-            
             
         }
 

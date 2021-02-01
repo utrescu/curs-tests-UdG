@@ -28,7 +28,20 @@ namespace shoppingcarttest
 
             // Arrange
             Assert.Equal(0, resultat);
+            Assert.True(shoppingcart.IsEmpty());
 
+        }
+
+        [Fact]
+        public void ComprovaQueSiNoTeUsuariLaCistellaEsAnonima()
+        {
+            // Arrange
+            
+            // Act
+            var resultat = shoppingcart.GetUsuari();
+
+            // Assert
+            Assert.Equal("anònim", resultat);
         }
 
         [Theory]
@@ -59,6 +72,38 @@ namespace shoppingcarttest
 
             // Assert
             Assert.Equal(quants, resultat);
+        }
+
+
+        public class ProductesData
+        {
+            public static IEnumerable<object[]> Data =>
+                new List<object[]>
+                {
+                    new object[] { new[] { (1, new Product("a", 1.0, 1.0)) } },
+                    new object[] { new[] { 
+                            (2, new Product("a", 1.0, 1.0)), 
+                            (3, new Product("b",1.0,1.0)) 
+                        } 
+                    },
+                };
+        }
+
+        [Theory]
+        [MemberData(nameof(ProductesData.Data), MemberType= typeof(ProductesData))]
+        public void ComprovaQueAfegirElementsComptaCorrectament(params (int, Product)[] productes) {
+            // Arrange
+            var expected = 0;
+            foreach(var producte in productes) {
+                expected += producte.Item1;
+                shoppingcart.AddProduct(producte.Item1, producte.Item2);
+            }
+
+            // Act
+            var resultat = shoppingcart.GetItemsCount();
+
+            // Assert
+            Assert.Equal(expected, resultat);
         }
 
     }
