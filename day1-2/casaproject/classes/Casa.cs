@@ -4,24 +4,25 @@ using System.Linq;
 
 namespace casaproject
 {
-    public class Casa
+
+    public class Casa : ICasa
     {
 
-        private Porta PortaEntrada;
-        private List<Persona> GentADins;
+        private IPorta PortaEntrada;
+        private List<IPersona> GentADins;
 
-        public Casa(Porta portaEntrada)
+        public Casa(IPorta portaEntrada)
         {
             PortaEntrada = portaEntrada;
-            GentADins = new List<Persona>();
+            GentADins = new List<IPersona>();
         }
-        public void ObrePorta() => PortaEntrada.Obre();
+        public void ObrePorta() => PortaEntrada.Acciona();
 
-        public void TancaPorta() => PortaEntrada.Tanca();
+        public void TancaPorta() => PortaEntrada.Acciona();
 
-        public bool EntraPersona(Persona persona)
+        public bool EntraPersona(IPersona persona)
         {
-            if (PortaEntrada.EstaOberta())
+            if (PortaEntrada.EsOberta())
             {
                 GentADins.Add(persona);
                 return true;
@@ -29,14 +30,14 @@ namespace casaproject
             return false;
         }
 
-        public Persona SurtPersona(string nom)
+        public IPersona SurtPersona(string nom)
         {
-            if (!PortaEntrada.EstaOberta())
+            if (!PortaEntrada.EsOberta())
             {
                 return null;
             }
 
-            Persona persona = GentADins.FirstOrDefault(p => p.Nom == nom);
+            IPersona persona = GentADins.FirstOrDefault(p => p.Nom == nom);
             if (persona != null)
             {
                 GentADins.Remove(persona);
@@ -45,8 +46,6 @@ namespace casaproject
         }
 
         public int QuantesPersonesHiHa() => GentADins.Count;
-
-
 
     }
 
