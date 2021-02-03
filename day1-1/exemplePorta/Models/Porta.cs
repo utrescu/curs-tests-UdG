@@ -4,7 +4,7 @@ using System.Text;
 
 namespace exemplePorta.Models
 {
-    class Porta
+    public class Porta
     {
 
         private bool _esOberta;

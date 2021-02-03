@@ -15,13 +15,14 @@ namespace casaproject
             PortaEntrada = portaEntrada;
             GentADins = new List<Persona>();
         }
-
         public void ObrePorta() => PortaEntrada.Obre();
 
         public void TancaPorta() => PortaEntrada.Tanca();
 
-        public bool EntraPersona(Persona persona) {
-            if (PortaEntrada.EstaOberta()) {
+        public bool EntraPersona(Persona persona)
+        {
+            if (PortaEntrada.EstaOberta())
+            {
                 GentADins.Add(persona);
                 return true;
             }
@@ -30,12 +31,14 @@ namespace casaproject
 
         public Persona SurtPersona(string nom)
         {
-            if (!PortaEntrada.EstaOberta()) {
+            if (!PortaEntrada.EstaOberta())
+            {
                 return null;
             }
 
             Persona persona = GentADins.FirstOrDefault(p => p.Nom == nom);
-            if (persona != null) {
+            if (persona != null)
+            {
                 GentADins.Remove(persona);
             }
             return persona;
