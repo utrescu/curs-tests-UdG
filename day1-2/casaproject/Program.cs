@@ -7,17 +7,17 @@ namespace casaproject
     {
         static void Main(string[] args)
         {
-           var persones = new List<Persona> {
+            var persones = new List<IPersona> {
                new Persona {Nom="Pere", Sexe=Sexe.HOME},
                new Persona {Nom="Maria", Sexe=Sexe.HOME},
                new Persona {Nom="Frederic", Sexe=Sexe.HOME},
                new Persona {Nom="Filomena", Sexe=Sexe.DONA},
                new Persona {Nom="Mariano", Sexe=Sexe.HOME},
-               new Persona {Nom="Marcela", Sexe=Sexe.DONA} 
+               new Persona {Nom="Marcela", Sexe=Sexe.DONA}
            };
 
-           var porta = new Porta();
-           var casa = new Casa(porta);
+            var porta = new Porta();
+            var casa = new Casa(porta);
 
             casa.EntraPersona(persones[0]);
             casa.ObrePorta();

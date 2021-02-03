@@ -1,25 +1,45 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
 namespace casaproject
 {
-    public class Porta
+    public class Porta : IPorta
     {
-        public bool oberta { get; set; }
 
-        public void Obre()
+        private bool _esOberta;
+        private bool _tancatAmbClau;
+        private bool _teClau;
+
+        public Porta(bool teClau = false)
         {
-            if (!EstaOberta())
+            TeClau = teClau;
+            _tancatAmbClau = false;
+        }
+
+        public virtual void Acciona()
+        {
+            if (_tancatAmbClau)
             {
-                oberta = true;
+                return;
             }
+            _esOberta = !_esOberta;
         }
 
-        public void Tanca()
+        public virtual bool TeClau { get => _teClau; set => _teClau = value; }
+
+        public virtual void GiraLaClau()
         {
-            oberta = false;
+            if (!TeClau)
+            {
+                return;
+            }
+            _tancatAmbClau = !_tancatAmbClau;
         }
 
-        public bool EstaOberta()
+        public virtual bool EsOberta()
         {
-            return oberta;
+            return _esOberta;
         }
     }
 }
