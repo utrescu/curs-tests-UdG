@@ -17,7 +17,7 @@ namespace casaproject
             _tancatAmbClau = false;
         }
 
-        public virtual void Acciona()
+        public void Acciona()
         {
             if (_tancatAmbClau)
             {
@@ -26,9 +26,9 @@ namespace casaproject
             _esOberta = !_esOberta;
         }
 
-        public virtual bool TeClau { get => _teClau; set => _teClau = value; }
+        public bool TeClau { get => _teClau; set => _teClau = value; }
 
-        public virtual void GiraLaClau()
+        public void GiraLaClau()
         {
             if (!TeClau)
             {
@@ -37,7 +37,7 @@ namespace casaproject
             _tancatAmbClau = !_tancatAmbClau;
         }
 
-        public virtual bool EsOberta()
+        public bool EsOberta()
         {
             return _esOberta;
         }
