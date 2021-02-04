@@ -45,24 +45,24 @@ namespace casaprojecttests
         }
 
 
-                [Fact]
-        public void ComprovaQueEsPotEntrarALaCasaSiLaPortaEstaOberta3()
-        {
-            // Arrange
-            var porta = new Mock<Porta>(false);            // No accepta paràmetres per defecte
-            porta.Setup(p => p.EsOberta()).Returns(true);  // Els mètodes han de ser virtual
+        // [Fact]
+        // public void ComprovaQueEsPotEntrarALaCasaSiLaPortaEstaOberta3()
+        // {
+        //     // Arrange
+        //     var porta = new Mock<Porta>(false);            // No accepta paràmetres per defecte
+        //     porta.Setup(p => p.EsOberta()).Returns(true);  // Els mètodes han de ser virtual
 
-            var casa = new Casa(porta.Object);
-            casa.ObrePorta();
+        //     var casa = new Casa(porta.Object);
+        //     casa.ObrePorta();
 
-            // Act
-            var resultat = casa.EntraPersona(new Persona());
+        //     // Act
+        //     var resultat = casa.EntraPersona(new Persona());
 
-            // Assert
-            Assert.True(resultat);
-            Assert.Equal(1, casa.QuantesPersonesHiHa());
+        //     // Assert
+        //     Assert.True(resultat);
+        //     Assert.Equal(1, casa.QuantesPersonesHiHa());
 
 
-        }
+        // }
     }
 }

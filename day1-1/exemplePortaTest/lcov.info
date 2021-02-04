@@ -1,0 +1,62 @@
+SF:c:\Users\utres\Documents\curs-tests-UdG\day1-1\exemplePorta\Program.cs
+FN:8,System.Void exemplePorta.Program::Main(System.String[])
+FNDA:0,System.Void exemplePorta.Program::Main(System.String[])
+DA:9,0
+DA:11,0
+DA:12,0
+DA:13,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+LF:9
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:c:\Users\utres\Documents\curs-tests-UdG\day1-1\exemplePorta\Models\Porta.cs
+FN:20,System.Void exemplePorta.Models.Porta::Acciona()
+FNDA:9332,System.Void exemplePorta.Models.Porta::Acciona()
+DA:21,9332
+DA:22,9332
+DA:23,107
+DA:24,107
+DA:26,9225
+DA:27,9332
+BRDA:22,9,0,107
+BRDA:22,9,1,9225
+FN:28,System.Boolean exemplePorta.Models.Porta::get_TeClau()
+FNDA:30,System.Boolean exemplePorta.Models.Porta::get_TeClau()
+DA:29,30
+FN:31,System.Void exemplePorta.Models.Porta::GiraLaClau()
+FNDA:5,System.Void exemplePorta.Models.Porta::GiraLaClau()
+DA:32,5
+DA:33,5
+DA:34,0
+DA:35,0
+DA:37,5
+DA:38,5
+BRDA:33,12,0,0
+BRDA:33,12,1,5
+FN:40,System.Boolean exemplePorta.Models.Porta::EsOberta()
+FNDA:25,System.Boolean exemplePorta.Models.Porta::EsOberta()
+DA:41,25
+DA:42,25
+DA:43,25
+FN:13,System.Void exemplePorta.Models.Porta::.ctor(System.Boolean)
+FNDA:25,System.Void exemplePorta.Models.Porta::.ctor(System.Boolean)
+DA:14,25
+DA:15,25
+DA:16,25
+DA:17,25
+DA:18,25
+LF:21
+LH:19
+BRF:4
+BRH:3
+FNF:5
+FNH:5
+end_of_record
