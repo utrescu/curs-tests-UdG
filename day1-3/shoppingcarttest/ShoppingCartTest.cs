@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace shoppingcarttest
+namespace shopcart
 {
     public class ShoppingCartTest
     {
@@ -83,7 +83,8 @@ namespace shoppingcarttest
                     new object[] { new[] { (1, new Product("a", 1.0, 1.0)) } },
                     new object[] { new[] { 
                             (2, new Product("a", 1.0, 1.0)), 
-                            (3, new Product("b",1.0,1.0)) 
+                            (3, new Product("b",1.0,1.0)),
+                            (1, new Product("a", 1.0, 1.0)), 
                         } 
                     },
                 };
