@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "shoppingcart", "shoppingcart\shoppingcart.csproj", "{FB1F18B9-7A82-4EB7-842F-E0DF0783C5C5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "shoppingcarttest", "shoppingcarttest\shoppingcarttest.csproj", "{797C96E0-9ACD-4730-A6FE-1978C2E43EAE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,17 @@ Global
 		{FB1F18B9-7A82-4EB7-842F-E0DF0783C5C5}.Release|x64.Build.0 = Release|Any CPU
 		{FB1F18B9-7A82-4EB7-842F-E0DF0783C5C5}.Release|x86.ActiveCfg = Release|Any CPU
 		{FB1F18B9-7A82-4EB7-842F-E0DF0783C5C5}.Release|x86.Build.0 = Release|Any CPU
+		{797C96E0-9ACD-4730-A6FE-1978C2E43EAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{797C96E0-9ACD-4730-A6FE-1978C2E43EAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{797C96E0-9ACD-4730-A6FE-1978C2E43EAE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{797C96E0-9ACD-4730-A6FE-1978C2E43EAE}.Debug|x64.Build.0 = Debug|Any CPU
+		{797C96E0-9ACD-4730-A6FE-1978C2E43EAE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{797C96E0-9ACD-4730-A6FE-1978C2E43EAE}.Debug|x86.Build.0 = Debug|Any CPU
+		{797C96E0-9ACD-4730-A6FE-1978C2E43EAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{797C96E0-9ACD-4730-A6FE-1978C2E43EAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{797C96E0-9ACD-4730-A6FE-1978C2E43EAE}.Release|x64.ActiveCfg = Release|Any CPU
+		{797C96E0-9ACD-4730-A6FE-1978C2E43EAE}.Release|x64.Build.0 = Release|Any CPU
+		{797C96E0-9ACD-4730-A6FE-1978C2E43EAE}.Release|x86.ActiveCfg = Release|Any CPU
+		{797C96E0-9ACD-4730-A6FE-1978C2E43EAE}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

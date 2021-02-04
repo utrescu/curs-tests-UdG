@@ -5,7 +5,7 @@ using Xunit;
 using System.Diagnostics.Contracts;
 using System.Numerics;
 
-namespace shoppingcarttest
+namespace shopcart
 {
     public class ProductTest
     {
