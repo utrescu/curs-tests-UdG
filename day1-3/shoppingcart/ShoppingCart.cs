@@ -8,7 +8,9 @@ namespace shopcart
     public class ShoppingCart : IShoppingCart
     {
         private Dictionary<IProduct, int> products;
-        private readonly double _baseTransportPrice;
+        private  readonly double _baseTransportPrice;
+
+        private double pesBasePerDefecte = 5;
 
         private IUsuari _usuari;
 
@@ -112,7 +114,15 @@ namespace shopcart
                 return 0;
             }
 
-            return pes > 5 ?  pes/5 + (_baseTransportPrice-1) : _baseTransportPrice;
+            if (pes >= pesBasePerDefecte ) {
+                var afegir = Math.Round((pes + pesBasePerDefecte)/pesBasePerDefecte) - 1;
+                return _baseTransportPrice + afegir;
+            }
+
+            return _baseTransportPrice;
+
+
+            // return pes > pesBasePerDefecte ?   + (_baseTransportPrice) : _baseTransportPrice;
         }
 
         public double TransportPrice
@@ -138,7 +148,7 @@ namespace shopcart
 
         public void AddUsuari(IUsuari usuari)
         {
-            if (usuari == null) {
+            if (_usuari == null) {
                 _usuari = usuari;
             } else {
                 throw new Exception("Aquesta cistella ja pertany a un usuari");
