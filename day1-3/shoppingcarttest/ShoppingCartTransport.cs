@@ -13,11 +13,11 @@ namespace shopcart
     public class ShoppingCartTransportTest
     {
         private readonly IShoppingCart shoppingcart;
-        private const double preuTransport = 2.0;
+        private const double preuBaseTransport = 2.0;
 
         public ShoppingCartTransportTest()
         {
-            shoppingcart = new ShoppingCart(preuTransport);
+            shoppingcart = new ShoppingCart(preuBaseTransport);
         }
 
         [Theory]
@@ -33,7 +33,7 @@ namespace shopcart
             var resultat = shoppingcart.TransportPrice;
 
             // Assert
-            Assert.Equal(preuTransport, resultat);
+            Assert.Equal(preuBaseTransport, resultat);
         }
 
         [Theory]
@@ -75,11 +75,11 @@ namespace shopcart
         }
 
         [Theory]
-        [InlineData(3.0, preuTransport)]
-        [InlineData(5.0, preuTransport+1)]
-        [InlineData(6.0, preuTransport+1)]
-        [InlineData(10.0, preuTransport+2)]
-        [InlineData(49.0, preuTransport+10)]
+        [InlineData(3.0, preuBaseTransport)]
+        [InlineData(5.0, preuBaseTransport+1)]
+        [InlineData(6.0, preuBaseTransport+1)]
+        [InlineData(10.0, preuBaseTransport+2)]
+        [InlineData(49.0, preuBaseTransport+10)]
         public void ComprovaElPreuDelTransportPerUsuarisNormalsSegonsElPes(double pes, double expected)
         {
             // Arrange

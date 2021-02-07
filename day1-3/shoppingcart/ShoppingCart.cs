@@ -120,9 +120,6 @@ namespace shopcart
             }
 
             return _baseTransportPrice;
-
-
-            // return pes > pesBasePerDefecte ?   + (_baseTransportPrice) : _baseTransportPrice;
         }
 
         public double TransportPrice
