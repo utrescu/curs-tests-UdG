@@ -3,8 +3,16 @@ using shopcart.Interfaces;
 
 namespace shopcart
 {
-    internal class Usuari : IUsuari
+    public class Usuari : IUsuari
     {
+
+        public Usuari(string usuari)
+        {
+            Nom = usuari;
+            Adreca = "";
+            DataAlta = DateTime.Now;
+
+        }
 
         public Usuari(string nom, string adreca, DateTime dataAlta)
         {

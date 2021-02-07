@@ -30,7 +30,7 @@ namespace shopcart
         }
 
         [Fact]
-        public void ComprovaQueElsCasosImpossiblesRetornenError()
+        public void ComprovaQueElPesImpossibleRetornenError()
         {
             var pes = -5.0;
             // Arrange

@@ -141,6 +141,11 @@ namespace shopcart
                 throw new Exception("Aquesta cistella ja pertany a un usuari");
             }
         }
+
+        public List<IProduct> Items()
+        {
+            return new List<IProduct>(products.Keys);;
+        }
     }
 
 }

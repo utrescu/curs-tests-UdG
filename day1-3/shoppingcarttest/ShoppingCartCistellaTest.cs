@@ -9,11 +9,11 @@ using Xunit;
 
 namespace shopcart
 {
-    public class ShoppingCartTest
+    public class ShoppingCartCistellaTest
     {
         private readonly IShoppingCart shoppingcart;
 
-        public ShoppingCartTest()
+        public ShoppingCartCistellaTest()
         {
             shoppingcart = new ShoppingCart(2);
         }
@@ -32,17 +32,6 @@ namespace shopcart
 
         }
 
-        [Fact]
-        public void ComprovaQueSiNoTeUsuariLaCistellaEsAnonima()
-        {
-            // Arrange
-            
-            // Act
-            var resultat = shoppingcart.GetUsuari();
-
-            // Assert
-            Assert.Equal("anònim", resultat);
-        }
 
         [Theory]
         [InlineData(1)]
@@ -92,19 +81,35 @@ namespace shopcart
 
         [Theory]
         [MemberData(nameof(ProductesData.Data), MemberType= typeof(ProductesData))]
-        public void ComprovaQueAfegirElementsComptaCorrectament(params (int, Product)[] productes) {
+        public void ComprovaQueAfegirElementsComptaCorrectament(params (int qtat, Product producte)[] dades) {
             // Arrange
             var expected = 0;
-            foreach(var producte in productes) {
-                expected += producte.Item1;
-                shoppingcart.AddProduct(producte.Item1, producte.Item2);
-            }
 
             // Act
-            var resultat = shoppingcart.GetItemsCount();
+            foreach(var dada in dades) {
+                expected += dada.qtat;
+                shoppingcart.AddProduct(dada.qtat, dada.producte);
+            }
 
-            // Assert
-            Assert.Equal(expected, resultat);
+            // Assert:  Les quantitats coincideixen
+            Assert.Equal(expected, shoppingcart.GetItemsCount());
+        }
+
+        [Theory]
+        [MemberData(nameof(ProductesData.Data), MemberType= typeof(ProductesData))]
+        public void ComprovaQueAfegirElementsAfegeixCorrectatmentElsArticles(params (int qtat, Product producte)[] dades) {
+            // Arrange
+            var expected = dades.Select( d => d.producte.Nom).Distinct();
+
+            // Act
+            foreach(var dada in dades) {
+                shoppingcart.AddProduct(dada.qtat, dada.producte);
+            }
+
+            // Assert: Els articles són els mateixos
+            var articles = shoppingcart.Items().Select(i => i.Nom);
+            Assert.Equal(expected, articles);
+
         }
 
     }

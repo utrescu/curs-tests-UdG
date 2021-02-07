@@ -24,5 +24,29 @@ namespace shopcart
             }
             return Pes > 20.0;
         }
+
+        // override object.Equals
+        public override bool Equals(object obj)
+        {
+            
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+            
+            Product other = obj as Product;
+            if (other.Nom == Nom) 
+            {
+                return true;
+            }
+            return false;
+        }
+        
+        // override object.GetHashCode
+        public override int GetHashCode()
+        {
+            var hash = 123456;
+            return hash * Nom.GetHashCode();
+        }
     }
 }
