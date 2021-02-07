@@ -32,12 +32,13 @@ namespace shopcart
 
         }
 
+        #region AfegirProductes
 
         [Theory]
         [InlineData(1)]
         [InlineData(2)]
         [InlineData(int.MaxValue)]
-        public void ComprovaQueEsPodenAfegirProductesEnUnaCistellaBuida(int quants)
+        public void ComprovaQueEsPodenAfegirQuantitatsDelMateixProducteEnUnaCistellaBuida(int quants)
         {
             // Arrange
             shoppingcart.AddProduct(quants, new Product("", 1.0, 1.0));
@@ -115,6 +116,36 @@ namespace shopcart
             // Assert: Els productes són els mateixos
             var productes = shoppingcart.Items().Select(i => i.Nom);
             Assert.Equal(expected, productes);
+
+        }
+
+        [Fact]
+        public void ComprovaQueNoEsPodenAfegirProductesNull()
+        {
+            // Arrange
+
+            // Act
+            void addProducte() => shoppingcart.AddProduct(1, null);
+
+            // Assert
+            var ex = Assert.Throws<ArgumentNullException>(addProducte);
+ 
+        }
+
+        #endregion
+
+        #region TreureProductes
+
+        [Fact]
+        public void ComprovaQueNoEsPodenTreureProductesNull()
+        {
+            // Arrange
+
+            // Act
+            void removeProducte() => shoppingcart.RemoveProduct(1, null);
+
+            // Assert
+            var ex = Assert.Throws<ArgumentNullException>(removeProducte);
 
         }
 
@@ -205,6 +236,8 @@ namespace shopcart
             var productesALaLlista = shoppingcart.Items().Select(i => i.Nom);
             Assert.Equal(productesExpected, productesALaLlista);
         }
+
+        #endregion
 
     }
 }

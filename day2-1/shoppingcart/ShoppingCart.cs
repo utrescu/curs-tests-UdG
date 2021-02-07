@@ -74,6 +74,11 @@ namespace shopcart
         /// <param name="product">Producte que s'afegeix</param>
         public void AddProduct(int count, IProduct product)
         {
+            if (product == null)
+            {
+                throw new ArgumentNullException();
+            }
+
             if (products.ContainsKey(product))
             {
                 var quantity = products[product] + count;
@@ -92,6 +97,11 @@ namespace shopcart
         /// <param name="product"></param>
         public void RemoveProduct(int count, string product)
         {
+            if (product == null)
+            {
+                throw new ArgumentNullException();
+            }
+
             var key = products.Keys.FirstOrDefault(n => n.Nom == product);
 
             if (key == null)
@@ -147,7 +157,7 @@ namespace shopcart
            {
                var descompte = 0.0;
                var quantitat = product.Value;
-               
+
                pes += quantitat * product.Key.Pes;
                if (quantitat >= 4) {
                    descompte = quantitat * (product.Key.Preu * 5 / 100);
@@ -163,7 +173,7 @@ namespace shopcart
         /// <param name="pes">Pes dels productes de la cistella</param>
         /// <param name="preu">Preu dels productes de la cistella</param>
         /// <returns></returns>
-        private double CalculateTransport(double pes, double preu) 
+        private double CalculateTransport(double pes, double preu)
         {
             if (preu >= 50
                 || _usuari != null && _usuari.EsVIP()) {
