@@ -112,5 +112,65 @@ namespace shopcart
 
         }
 
+        [Theory]
+        [InlineData("a", "a", "b", "c", "d")]
+        [InlineData("d", "a", "b", "e", "c", "d")]
+        [InlineData("b", "a", "b", "c", "e", "d")]
+        public void ComprovaQueEsPodenTreureArticlesDeLaCistella(string treure, params string[] articles)
+        {
+            // Arrange
+            foreach (var article in articles)
+            {
+                shoppingcart.AddProduct(1, new Product(article, 1.0, 1.0));
+            }
+
+            var articlesExpected = articles.Where(x => x != treure).ToArray();
+
+            // Act
+            shoppingcart.RemoveProduct(1, treure);
+
+            // Assert
+            var articlesALaLlista = shoppingcart.Items().Select(i => i.Nom);
+            Assert.Equal(articlesExpected, articlesALaLlista);
+        }
+
+        [Theory]
+        [InlineData("a", "a", "b", "c", "d")]
+        [InlineData("d", "a", "b", "e", "c", "d")]
+        [InlineData("b", "a", "b", "c", "e", "d")]
+        public void ComprovaQueEsPodenTreureParcialmentArticlesDeLaCistella(string treure, params string[] articles)
+        {
+            var enPoso = 2;
+            var enTrec = 1;
+            // Arrange
+            var expectedQuantitat = 0;
+            foreach (var article in articles)
+            {
+                if (article == treure)
+                {
+                    shoppingcart.AddProduct(enPoso, new Product(article, 1.0, 1.0));
+                    expectedQuantitat += enPoso;
+                }
+                else
+                {
+                    shoppingcart.AddProduct(1, new Product(article, 1.0, 1.0));
+                    expectedQuantitat += 1;
+                }
+            }
+            expectedQuantitat -= enTrec;
+
+            var articlesExpected = articles;
+
+            // Act: en trec 1
+            shoppingcart.RemoveProduct(enTrec, treure);
+
+            // Assert: La quantitat ha baixat
+            Assert.Equal(expectedQuantitat, shoppingcart.GetItemsCount());
+
+            // l'article encara hi és
+            var articlesALaLlista = shoppingcart.Items().Select(i => i.Nom);
+            Assert.Equal(articlesExpected, articlesALaLlista);
+        }
+
     }
 }

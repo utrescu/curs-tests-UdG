@@ -12,10 +12,12 @@ namespace shopcart
     public class ShoppingCartUsuariTest
     {
         private readonly IShoppingCart shoppingcart;
+        private const string usuariExemple = "Pere";
+        private const string anonim = "anònim";
 
         public ShoppingCartUsuariTest()
         {
-            shoppingcart = new ShoppingCart(2, new Usuari("Pere"));
+            shoppingcart = new ShoppingCart(2, new Usuari(usuariExemple));
         }
 
 
@@ -29,7 +31,7 @@ namespace shopcart
             var resultat = anonimShoppingCart.GetUsuari();
 
             // Assert
-            Assert.Equal("anònim", resultat);
+            Assert.Equal(anonim, resultat);
         }
 
         [Fact]
@@ -41,7 +43,7 @@ namespace shopcart
             var resultat = shoppingcart.GetUsuari();
 
             // Assert
-            Assert.Equal("Pere", resultat);
+            Assert.Equal(usuariExemple, resultat);
         }
 
         [Fact]

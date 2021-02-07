@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using shopcart.Interfaces;
 
 namespace shopcart
@@ -61,14 +62,16 @@ namespace shopcart
 
         public bool IsEmpty() => GetItemsCount() == 0;
 
-        public void RemoveProduct(int count, IProduct product)
+        public void RemoveProduct(int count, string product)
         {
-            if (!products.ContainsKey(product))
+            var key = products.Keys.FirstOrDefault(n => n.Nom == product);
+
+            if (key == null)
             {
                 throw new System.Exception("El producte no està a la cistella");
             }
 
-            var quantity = products[product];
+            var quantity = products[key];
             if (quantity < count)
             {
                 throw new System.Exception("Vols treure més productes dels que hi ha");
@@ -77,11 +80,11 @@ namespace shopcart
             quantity -= count;
             if (quantity == 0)
             {
-                products.Remove(product);
+                products.Remove(key);
             }
             else
             {
-                products[product] = quantity;
+                products[key] = quantity;
             }
         }
 
