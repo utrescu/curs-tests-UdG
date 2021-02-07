@@ -1,11 +1,13 @@
-# Gestor de contrasenyes
+# Implementació d'una cistella de la compra
 
-Desenvolupeu un programa que crei un gestor de contrasenyes que compleixi les condicions seguents:
+Condicions:
 
-* Les contrasenyes han de tenir 8 caràcters de llargada com a mínim
-* Han de tenir més de 2 números
-* Han de tenir majúscules i minúscules
-* No hi poden haver tres caràcters seguits iguals
-* Si hi ha un caràcter especial els números poden ser iguals
-* Si no hi ha caràcter especial els números han de ser diferents
-* La contrasenya no pot ser el nom d’usuari, ni el nom de l’usuari al revés
+- S’han de poder afegir i treure quantitats de productes i buidar la cistella
+- Ha de saber la quantitat d’articles
+- Calcula el preu del transport:
+  - Hi haurà un preu de transport base per compres inferiors a 5Kg
+  - El preu del transport s’incrementarà en 1€ per cada 5Kg de pes
+  - Si el total és superior a 50€ el transport és gratuït
+  - Els usuaris VIP tenen transport gratuït
+- Ha de calcular el total a pagar amb transport inclòs
+  - Si es compren més de quatre unitats del mateix producte es rebaixa un 5% en el preu del producte
