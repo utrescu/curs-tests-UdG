@@ -28,6 +28,50 @@ namespace shopcart
             }
         }
 
+        #region GestioCistella
+
+        /// <summary>
+        /// Determina si la cistella està buida
+        /// </summary>
+        /// <returns>True si la cistella és buida</returns>
+        public bool IsEmpty() => GetItemsCount() == 0;
+
+        /// <summary>
+        /// Obtenir la llista d'articles de la cistella
+        /// </summary>
+        /// <returns></returns>
+        public List<IProduct> Items()
+        {
+            return new List<IProduct>(products.Keys);
+        }
+
+        /// <summary>
+        /// Obtenir el número de unitats de la cistella
+        /// </summary>
+        /// <returns>Quantitat d'items de la cistella</returns>
+        public int GetItemsCount()
+        {
+            var totalItems = 0;
+            foreach (var (_, count) in products)
+            {
+                totalItems += count;
+            }
+            return totalItems;
+        }
+
+        /// <summary>
+        /// Buida la cistella de la compra
+        /// </summary>
+        public void EmptyShoppingCart()
+        {
+            products.Clear();
+        }
+
+        /// <summary>
+        /// Afegeix un producte a la cistella
+        /// </summary>
+        /// <param name="count">quantitat</param>
+        /// <param name="product">Producte que s'afegeix</param>
         public void AddProduct(int count, IProduct product)
         {
             if (products.ContainsKey(product))
@@ -40,30 +84,12 @@ namespace shopcart
                 products[product] = count;
             }
         }
-
-        public int GetItemsCount()
-        {
-            var totalItems = 0;
-            foreach (var (_, count) in products)
-            {
-                totalItems += count;
-            }
-            return totalItems;
-        }
-
-        public double GetTotal()
-        {
-            if (IsEmpty())
-            {
-                return 0;
-            }
-
-            var (pes, total) = CalculaPesIPreu();
-            return total + CalculateTransport(pes, total);
-        }
-
-        public bool IsEmpty() => GetItemsCount() == 0;
-
+        
+        /// <summary>
+        /// Treure un article de la cistella
+        /// </summary>
+        /// <param name="count"></param>
+        /// <param name="product"></param>
         public void RemoveProduct(int count, string product)
         {
             var key = products.Keys.FirstOrDefault(n => n.Nom == product);
@@ -90,6 +116,30 @@ namespace shopcart
             }
         }
 
+        #endregion
+
+        #region Calcula
+
+        /// <summary>
+        /// Calcula el total a pagar segons les condicions de la cistella
+        /// </summary>
+        /// <returns>Quantitat a pagar</returns>
+        public double GetTotal()
+        {
+            if (IsEmpty())
+            {
+                return 0;
+            }
+
+            var (pes, total) = CalculaPesIPreu();
+            return total + CalculateTransport(pes, total);
+        }
+
+
+        /// <summary>
+        /// Calcula el pes i el preu de venda dels productes de la cistella
+        /// </summary>
+        /// <returns></returns>
         private (double , double) CalculaPesIPreu() {
             var pes = 0.0;
             var total = 0.0;
@@ -107,6 +157,12 @@ namespace shopcart
            return (pes, Math.Round(total, 2));
         }
 
+        /// <summary>
+        /// Calcula el transport dels productes de la cistella
+        /// </summary>
+        /// <param name="pes">Pes dels productes de la cistella</param>
+        /// <param name="preu">Preu dels productes de la cistella</param>
+        /// <returns></returns>
         private double CalculateTransport(double pes, double preu) 
         {
             if (preu >= 50
@@ -122,6 +178,9 @@ namespace shopcart
             return _baseTransportPrice;
         }
 
+        /// <summary>
+        /// Obtenir el preu del transport
+        /// </summary>
         public double TransportPrice
         {
             get
@@ -131,18 +190,24 @@ namespace shopcart
             }
         }
 
-        public void Clear()
-        {
-            products.Clear();
-        }
+        #endregion
 
         public override string ToString() {
             var (pes, preu) = CalculaPesIPreu();
             return $"{string.Format("{0:0.##}",preu)} + {TransportPrice} euros, {pes} kg";
         }
 
+        #region usuari
+        /// <summary>
+        /// Obtenir l'usuari, en cas de que no n'hi hagi retorna anònim
+        /// </summary>
+        /// <returns></returns>
         public string GetUsuari() => _usuari == null ? "anònim" : _usuari.Nom;
 
+        /// <summary>
+        /// Afegir l'usuari a la cistella de la compra
+        /// </summary>
+        /// <param name="usuari"></param>
         public void AddUsuari(IUsuari usuari)
         {
             if (_usuari == null) {
@@ -152,10 +217,9 @@ namespace shopcart
             }
         }
 
-        public List<IProduct> Items()
-        {
-            return new List<IProduct>(products.Keys);;
-        }
+        #endregion
+
+
     }
 
 }

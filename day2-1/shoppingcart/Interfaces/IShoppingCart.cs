@@ -9,11 +9,11 @@ namespace shopcart.Interfaces
         int GetItemsCount();
         List<IProduct> Items();
         bool IsEmpty();
-        void Clear();
+        void EmptyShoppingCart();
 
         double GetTotal();
         double TransportPrice { get; }
-        
+
         string GetUsuari();
         void AddUsuari(IUsuari usuari);
     }

@@ -49,7 +49,7 @@ namespace shopcart
             Assert.Equal(quants, resultat);
         }
 
-        [Fact]        
+        [Fact]
         public void ComprovaQueNoEsPodenAfegirElementsNegatiusEnUnaCistellaBuida()
         {
             // Arrange
@@ -70,11 +70,17 @@ namespace shopcart
                 new List<object[]>
                 {
                     new object[] { new[] { (1, new Product("a", 1.0, 1.0)) } },
-                    new object[] { new[] { 
-                            (2, new Product("a", 1.0, 1.0)), 
+                    new object[] { new[] {
+                            (2, new Product("a", 1.0, 1.0)),
                             (3, new Product("b",1.0,1.0)),
-                            (1, new Product("a", 1.0, 1.0)), 
-                        } 
+                            (1, new Product("a", 1.0, 1.0)),
+                        }
+                    },
+                    new object[] { new[] {
+                            (2, new Product("a", 1.0, 1.0)),
+                            (3, new Product("a",1.0,1.0)),
+                            (1, new Product("a", 1.0, 1.0)),
+                        }
                     },
                 };
         }
@@ -130,6 +136,31 @@ namespace shopcart
             shoppingcart.RemoveProduct(1, treure);
 
             // Assert
+            var articlesALaLlista = shoppingcart.Items().Select(i => i.Nom);
+            Assert.Equal(articlesExpected, articlesALaLlista);
+        }
+
+        [Theory]
+        [InlineData("b", "a", "b", "c", "e", "d")]
+        public void ComprovaQueTreureArticlesDeLaCistellaSiNoHiSonNoCanviaRes(params string[] articles)
+        {
+            // Arrange
+            foreach (var article in articles)
+            {
+                shoppingcart.AddProduct(1, new Product(article, 1.0, 1.0));
+            }
+
+            var articlesExpected = shoppingcart.Items().Select(i => i.Nom);
+            var itemsExpected = shoppingcart.GetItemsCount();
+            var treure = "ArticleQueNoEstaEnLaCistella";
+
+            // Act
+            var ex = Assert.Throws<Exception>(() => shoppingcart.RemoveProduct(1, treure));
+
+            // Assert
+
+            Assert.Equal("El producte no està a la cistella", ex.Message);
+            Assert.Equal(itemsExpected, shoppingcart.GetItemsCount());
             var articlesALaLlista = shoppingcart.Items().Select(i => i.Nom);
             Assert.Equal(articlesExpected, articlesALaLlista);
         }
