@@ -21,13 +21,13 @@ namespace shopcart
         }
 
         [Theory]
-        [InlineData(20)]
+        [InlineData(0.01)]
         [InlineData(2)]
-        [InlineData(49)]
-        public void ComprovaQueElTransportEsElValorPerDefecteQuanElPesEsBaixINoEs50(double preu)
+        [InlineData(4.99)]
+        public void ComprovaQueElTransportEsElValorPerDefecteQuanElPesEsBaixINoEs50(double pes)
         {
             // Arrange
-            shoppingcart.AddProduct(1, new Product("A", 20.0, 2));
+            shoppingcart.AddProduct(1, new Product("A", 20, pes));
 
             // Act
             var resultat = shoppingcart.TransportPrice;
