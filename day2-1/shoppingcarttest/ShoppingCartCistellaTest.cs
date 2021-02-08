@@ -149,6 +149,19 @@ namespace shopcart
 
         }
 
+        [Fact]
+        public void ComprovaQueNoEsPodenTreureMesProductesDelsQueHiHa()
+        {
+            // Arrange
+            shoppingcart.AddProduct(1, new Product("b", 1.0, 1.0));
+            // Act
+            void removeProducte() => shoppingcart.RemoveProduct(2, "b");
+
+            // Assert
+            var ex = Assert.Throws<Exception>(removeProducte);
+            Assert.Equal("Vols treure més productes dels que hi ha", ex.Message);
+        }
+
         [Theory]
         [InlineData("a", "a", "b", "c", "d")]
         [InlineData("d", "a", "b", "e", "c", "d")]
