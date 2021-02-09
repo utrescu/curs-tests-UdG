@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading;
 using Xunit;
 
-namespace ElTempsTestNamespace
+namespace eltemps
 {
     public class ElTempsLoginTest : IDisposable
     {
