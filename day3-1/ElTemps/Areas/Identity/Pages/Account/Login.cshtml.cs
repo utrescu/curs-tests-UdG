@@ -43,15 +43,16 @@ namespace ElTemps.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
+            [Required(ErrorMessage = "El Correu electrònic és obligatòri")]
+            [Display(Name = "Correu")]
             [EmailAddress]
             public string Email { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "La contrasenya no pot estar en blanc")]
             [DataType(DataType.Password)]
             public string Password { get; set; }
 
-            [Display(Name = "Remember me?")]
+            [Display(Name = "Contrasenya oblidada?")]
             public bool RememberMe { get; set; }
         }
 

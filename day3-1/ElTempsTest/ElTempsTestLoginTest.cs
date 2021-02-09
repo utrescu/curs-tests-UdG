@@ -5,6 +5,7 @@ using System;
 using System.Linq;
 using System.Threading;
 using Xunit;
+using System.Drawing.Imaging;
 
 namespace eltemps
 {
@@ -62,6 +63,7 @@ namespace eltemps
                 .Select(err => err.Text);
 
             Assert.Contains("Invalid login attempt.", errors);
+
         }
 
         [Fact]
@@ -81,7 +83,7 @@ namespace eltemps
             var errors = driver.FindElements(By.ClassName("validation-summary-errors"))
                 .Select(err => err.Text);
 
-            Assert.Contains("The Password field is required.", errors);
+            Assert.Contains("La contrasenya no pot estar en blanc", errors);
         }
 
         [Theory]
@@ -124,6 +126,9 @@ namespace eltemps
             var logout = driver.FindElementById("logout");
             Assert.True(logout.Enabled);
             Assert.Equal("Sortir", logout.Text);
+
+            Screenshot ss = ((ITakesScreenshot) driver).GetScreenshot();
+            ss.SaveAsFile("pantalla.png", ScreenshotImageFormat.Png);
 
             Thread.Sleep(2000);
 
