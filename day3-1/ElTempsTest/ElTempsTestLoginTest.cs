@@ -103,7 +103,7 @@ namespace eltemps
         }
 
         [Theory]
-        [InlineData("utrescu@gmail.com", "Ies2010!")]
+        [InlineData("filomenu@udg.edu", "Ies2010!")]
         public void TestQueEsPotFerLoginAmbUsuariCorrecteIQueSurtEnLaNavBarIHiHaBotoDeLogout(string usuari, string contrasenya)
         {
             // GIVEN un usuari que vol fer login

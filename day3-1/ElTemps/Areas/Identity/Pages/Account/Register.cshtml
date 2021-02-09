@@ -11,50 +11,55 @@
             <div>
                 <label class="text-gray-700 dark:text-gray-200" for="Input.Nom">Nom</label>
                 <input id="nom" type="text" asp-for="Input.Nom"
-                    class="mt-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded py-2 px-4 block w-full focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
-                <span asp-validation-for="Input.Nom" class="text-danger"></span>
+                       class="mt-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded py-2 px-4 block w-full focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                <span asp-validation-for="Input.Nom" class="text-red-600 dark:text-red-400 font-bold mx-2 text-sm hover:text-red-500"></span>
             </div>
             <div>
                 <label class="text-gray-700 dark:text-gray-200" for="Input.Cognoms">Cognoms</label>
                 <input id="cognoms" type="text" asp-for="Input.Cognoms"
-                    class="mt-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded py-2 px-4 block w-full focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
-                <span asp-validation-for="Input.Cognoms" class="text-danger"></span>
+                       class="mt-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded py-2 px-4 block w-full focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                <span asp-validation-for="Input.Cognoms" class="text-red-600 dark:text-red-400 font-bold mx-2 text-sm hover:text-red-500"></span>
             </div>
             <div>
                 <label class="text-gray-700 dark:text-gray-200" for="Input.Poblacio">Poblacio</label>
                 <input id="poblacio" type="text" asp-for="Input.Poblacio"
-                    class="mt-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded py-2 px-4 block w-full focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
-                <span asp-validation-for="Input.Poblacio" class="text-danger"></span>
+                       class="mt-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded py-2 px-4 block w-full focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                <span asp-validation-for="Input.Poblacio" class="text-red-600 dark:text-red-400 font-bold mx-2 text-sm hover:text-red-500"></span>
             </div>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-1 gap-6 mt-4">
             <div>
                 <label class="text-gray-700 dark:text-gray-200" for="Input.Email">Correu electrònic</label>
                 <input id="correu" type="email" asp-for="Input.Email"
-                    class="mt-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded py-2 px-4 block w-full focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                       class="mt-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded py-2 px-4 block w-full focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                <span asp-validation-for="Input.Email" class="text-red-600 dark:text-red-400 font-bold mx-2 text-sm hover:text-red-500"></span>
             </div>
 
             <div>
                 <label class="text-gray-700 dark:text-gray-200" for="Input.Password">Password</label>
                 <input id="contrasenya" type="password" asp-for="Input.Password"
-                    class="mt-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded py-2 px-4 block w-full focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                       class="mt-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded py-2 px-4 block w-full focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                <span asp-validation-for="Input.Password" class="text-red-600 dark:text-red-400 font-bold mx-2 text-sm hover:text-red-500"></span>
             </div>
 
             <div>
-                <label class="text-gray-700 dark:text-gray-200" for="Input.ConfirmPassword">Password
-                    Confirmation</label>
+                <label class="text-gray-700 dark:text-gray-200" for="Input.ConfirmPassword">
+                    Password
+                    Confirmation
+                </label>
                 <input id="confirmacio" type="password" asp-for="Input.ConfirmPassword"
-                    class="mt-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded py-2 px-4 block w-full focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                       class="mt-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded py-2 px-4 block w-full focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                <span asp-validation-for="Input.ConfirmPassword" class="text-red-600 dark:text-red-400 font-bold mx-2 text-sm hover:text-red-500"></span>
             </div>
         </div>
+        <div asp-validation-summary="ModelOnly"
+             class="text-red-600 dark:text-red-400 font-bold mx-2 text-sm hover:text-red-500"></div>
 
         <div class="flex justify-end mt-6">
             <button type="submit" id="submit"
-                class="bg-gray-700 text-white py-2 px-4 rounded hover:bg-gray-600 focus:outline-none focus:bg-gray-600">
-                Registreu-vos</button>
+                    class="bg-gray-700 text-white py-2 px-4 rounded hover:bg-gray-600 focus:outline-none focus:bg-gray-600">
+                Registreu-vos
+            </button>
         </div>
     </form>
 </div>

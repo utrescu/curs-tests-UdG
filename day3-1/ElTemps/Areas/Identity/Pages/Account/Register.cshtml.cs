@@ -46,27 +46,27 @@ namespace ElTemps.Areas.Identity.Pages.Account
 
         public class InputModel : IValidatableObject
         {
-            [Required]
-            [EmailAddress]
-            [Display(Name = "Email")]
+            [Required(ErrorMessage = "El {0} és obligatòri")]
+            [EmailAddress(ErrorMessage = "Això no sembla un correu electrònic")]
+            [Display(Name = "Correu")]
             public string Email { get; set; }
 
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [Required(ErrorMessage = "La {0} és obligatòria")]
+            [StringLength(100, ErrorMessage = "La {0} ha de tenir com a mínim {2} caràcters i com a màxim {1}.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Password")]
+            [Display(Name = "Contrasenya")]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirmar contrassenya")]
-            [Compare("Password", ErrorMessage = "Les contrassenyes no quadren.")]
+            [Display(Name = "Confirmar contrasenya")]
+            [Compare("Password", ErrorMessage = "Les contrasenyes no quadren.")]
             public string ConfirmPassword { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "El {0} és obligatòri")]
             [Display(Name = "Nom")]
             public string Nom { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "El {0} és obligatòri")]
             [Display(Name = "Cognoms")]
             public string Cognoms { get; set; }
 
@@ -75,7 +75,6 @@ namespace ElTemps.Areas.Identity.Pages.Account
 
             public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
             {
-
                 var pobles = PrevisioService.Pobles;
                 if (!pobles.Contains(Poblacio))
                 {
