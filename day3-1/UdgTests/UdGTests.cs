@@ -5,39 +5,75 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium;
 using System.Linq;
+using OpenQA.Selenium.Interactions;
 
 namespace Testemps
 {
     public class UnitTest1
     {
-        [Fact]
-        public void Test1()
-        {
-            var driver = new ChromeDriver();
+    //     [Fact]
+    //     public void Test1()
+    //     {
+    //         var driver = new ChromeDriver();
+    //         DefaultWait<IWebDriver> fluentWait = new DefaultWait<IWebDriver>(driver);
+    //         fluentWait.Timeout = TimeSpan.FromSeconds(5);
+    //         fluentWait.PollingInterval = TimeSpan.FromMilliseconds(250);
+
+    //         driver.Navigate().GoToUrl("https://www.udg.edu");
+
+    //         driver.FindElementByClassName("main-header__search-toggle-icon").Click();
+
+    //         var busca = driver.FindElementByClassName("main-header__search-input");
+    //         busca.SendKeys("Informàtica");
+
+    //         driver.FindElementByClassName("main-header__search-button").Click();
+
+    //         Thread.Sleep(1000);
+
+    //         var links = driver.FindElements(By.CssSelector("a.gs-title"));
+
+    //         var url  = links[0].GetAttribute("href");
+    //         links[0].Click();
+
+    //         driver.Quit();
+    //    }
+
+
+       [Fact]
+       public void Test2() 
+       {
+           Random rnd = new Random();
+
+           var driver = new ChromeDriver();
             DefaultWait<IWebDriver> fluentWait = new DefaultWait<IWebDriver>(driver);
             fluentWait.Timeout = TimeSpan.FromSeconds(5);
             fluentWait.PollingInterval = TimeSpan.FromMilliseconds(250);
 
-            driver.Navigate().GoToUrl("https://www.udg.edu");
+            driver.Navigate().GoToUrl("https://duckduckgo.com");
+            var input = driver.FindElement(By.XPath("//input[@id='search_form_input_homepage']"));
+            input.SendKeys("universitat de girona");
+            input.Submit();
 
-            driver.FindElementByClassName("main-header__search-toggle-icon").Click();
+            
 
-            var busca = driver.FindElementByClassName("main-header__search-input");
-            busca.SendKeys("Informàtica");
+            for(int i=0; i <= 5; i++) {
+                var links = driver.FindElementsByClassName("result__a");
+                Thread.Sleep(1000);
 
-            driver.FindElementByClassName("main-header__search-button").Click();
+                Actions actions = new Actions(driver);
+                actions.MoveToElement(links[i]);
+                actions.Perform();
 
-            Thread.Sleep(5000);
+                links[i].Click();
+                Thread.Sleep(1000);
+                driver.Navigate().Back();
 
-            var links = driver.FindElements(By.CssSelector("a.gs-title"));
+            }
 
-            var url  = links[0].GetAttribute("href");
-            links[0].Click();
-
-            Assert.Equal(driver.Url, url);
-
+            Thread.Sleep(1000);
 
             driver.Quit();
+
        }
     }
 }
