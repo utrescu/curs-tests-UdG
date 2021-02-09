@@ -12,7 +12,7 @@ namespace ElTempsTestNamespace
     {
         ChromeDriver driver;
 
-        public ElTempsTest()
+        public ElTempsLoginTest()
         {
             ChromeOptions options = new ChromeOptions();
             options.AddArguments("--lang=ca");
@@ -46,10 +46,10 @@ namespace ElTempsTestNamespace
         }
 
         [Theory]
-        [InlineData("inexistent@localhost", "Hola!123")]        
+        [InlineData("inexistent@localhost", "Hola!123")]
         public void TestQueSiFaigLoginAmbUnUsuariIncorrecteRebemUnError(string usuari, string contrasenya)
         {
-            // GIVEN un usuari que vol fer login                     
+            // GIVEN un usuari que vol fer login
             driver.Url = "https://localhost:5001/Identity/Account/Login";
 
             // WHEN intenta entrar
@@ -57,7 +57,7 @@ namespace ElTempsTestNamespace
             driver.FindElement(By.Id("contrasenya")).SendKeys(contrasenya);
             driver.FindElement(By.Id("entrar")).Click();
 
-            // THEN            
+            // THEN
             var errors = driver.FindElements(By.ClassName("validation-summary-errors"))
                 .Select(err => err.Text);
 
@@ -77,7 +77,7 @@ namespace ElTempsTestNamespace
             driver.FindElement(By.Id("contrasenya")).SendKeys(contrasenya);
             driver.FindElement(By.Id("entrar")).Click();
 
-            // THEN            
+            // THEN
             var errors = driver.FindElements(By.ClassName("validation-summary-errors"))
                 .Select(err => err.Text);
 
@@ -89,7 +89,7 @@ namespace ElTempsTestNamespace
         [InlineData("pepet", "Hola!123")]
         public void TestQueSiFaigLoginAmbCorreuIncorrecteRebemUnError(string usuari, string contrasenya)
         {
-            // GIVEN un usuari que vol fer login                     
+            // GIVEN un usuari que vol fer login
             driver.Url = "https://localhost:5001/Identity/Account/Login";
 
             // WHEN intenta entrar
@@ -97,7 +97,7 @@ namespace ElTempsTestNamespace
             driver.FindElement(By.Id("contrasenya")).SendKeys(contrasenya);
             driver.FindElement(By.Id("entrar")).Click();
 
-            // THEN el correu està malament                        
+            // THEN el correu està malament
             var errorMessage = driver.FindElement(By.Id("correu")).GetAttribute("validationMessage");
             Assert.NotEmpty(errorMessage);
         }
@@ -106,7 +106,7 @@ namespace ElTempsTestNamespace
         [InlineData("utrescu@gmail.com", "Ies2010!")]
         public void TestQueEsPotFerLoginAmbUsuariCorrecteIQueSurtEnLaNavBarIHiHaBotoDeLogout(string usuari, string contrasenya)
         {
-            // GIVEN un usuari que vol fer login                     
+            // GIVEN un usuari que vol fer login
             driver.Url = "https://localhost:5001/Identity/Account/Login";
 
             // WHEN intenta entrar
@@ -126,7 +126,7 @@ namespace ElTempsTestNamespace
             Assert.Equal("Sortir", logout.Text);
 
             Thread.Sleep(2000);
-            
+
         }
 
     }
