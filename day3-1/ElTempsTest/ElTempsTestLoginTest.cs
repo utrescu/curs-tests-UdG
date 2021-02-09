@@ -8,11 +8,11 @@ using Xunit;
 
 namespace ElTempsTestNamespace
 {
-    public class ElTempsTest : IDisposable
+    public class ElTempsLoginTest : IDisposable
     {
         ChromeDriver driver;
 
-        public UnitTest1()
+        public ElTempsTest()
         {
             ChromeOptions options = new ChromeOptions();
             options.AddArguments("--lang=ca");
